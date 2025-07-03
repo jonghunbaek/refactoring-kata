@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 class GildedRose {
+    public static final int MINIMUM = 0;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -49,7 +50,7 @@ class GildedRose {
                             }
                         }
                     } else {
-                        item.quality = item.quality - item.quality;
+                        item.quality = MINIMUM;
                     }
                 } else {
                     if (item.quality < 50) {
