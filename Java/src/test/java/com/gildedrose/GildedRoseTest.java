@@ -22,6 +22,20 @@ class GildedRoseTest {
         );
     }
 
+    @DisplayName("아이템의 가치는 음수의 값이 되지 않는다.")
+    @Test
+    void updateQualityWhenNormalItem2() {
+        Item[] items = new Item[] {new Item("+5 Dexterity Vest", 1, 0)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("+5 Dexterity Vest", app.items[0].name),
+            () -> assertEquals(0, app.items[0].sellIn),
+            () -> assertEquals(0, app.items[0].quality)
+        );
+    }
+
     @DisplayName("Aged Brie 아이템은 하루가 지날때마다 가치가 1씩 증가한다.")
     @Test
     void updateQualityWhenAgedBrieItem() {
