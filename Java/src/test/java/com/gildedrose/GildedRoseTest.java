@@ -38,4 +38,17 @@ class GildedRoseTest {
             () -> assertEquals(19, app.items[0].quality)
         );
     }
+
+    @DisplayName("Aged Brie 아이템은 하루가 지날때마다 가치가 1씩 증가한다.")
+    @Test
+    void updateQualityWhenAgedBrieItem() {
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Aged Brie", app.items[1].name),
+            () -> assertEquals(1, app.items[1].sellIn),
+            () -> assertEquals(1, app.items[1].quality)
+        );
+    }
 }
