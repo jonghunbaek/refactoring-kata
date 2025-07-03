@@ -36,7 +36,7 @@ class GildedRoseTest {
         );
     }
 
-    @DisplayName("Sulfuras 아이템은 하루가 지날때마다 가치가 1씩 증가한다.")
+    @DisplayName("Sulfuras 아이템은 시간이 지나도 판매기간과 가치가 감소/증가하지 않는다.")
     @Test
     void updateQualityWhenSulfurasItem() {
         Item[] items = new Item[] {
@@ -50,9 +50,73 @@ class GildedRoseTest {
             () -> assertEquals("Sulfuras, Hand of Ragnaros", app.items[0].name),
             () -> assertEquals(0, app.items[0].sellIn),
             () -> assertEquals(80, app.items[0].quality),
+
             () -> assertEquals("Sulfuras, Hand of Ragnaros", app.items[1].name),
             () -> assertEquals(-1, app.items[1].sellIn),
             () -> assertEquals(80, app.items[1].quality)
+        );
+    }
+
+    @DisplayName("Backstage passes 아이템은 판매기간이 11일 이상일 경우 하루가 지나면 가치가 1증가한다.")
+    @Test
+    void updateQualityWhenBackstagePassesItemPhase1() {
+        Item[] items = new Item[] {new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name),
+            () -> assertEquals(10, app.items[0].sellIn),
+            () -> assertEquals(21, app.items[0].quality)
+        );
+    }
+
+    @DisplayName("Backstage passes 아이템은 판매기간이 10일 이하, 6일 이상일 경우 하루가 지나면 가치가 2증가한다.")
+    @Test
+    void updateQualityWhenBackstagePassesItemPhase2() {
+        Item[] items = new Item[] {
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 6, 20),
+        };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name),
+            () -> assertEquals(9, app.items[0].sellIn),
+            () -> assertEquals(22, app.items[0].quality),
+
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name),
+            () -> assertEquals(5, app.items[1].sellIn),
+            () -> assertEquals(22, app.items[1].quality)
+        );
+    }
+
+    @DisplayName("Backstage passes 아이템은 판매기간이 5일 이하일 경우 하루가 지나면 가치가 3증가한다.")
+    @Test
+    void updateQualityWhenBackstagePassesItemPhase3() {
+        Item[] items = new Item[] {new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name),
+            () -> assertEquals(4, app.items[0].sellIn),
+            () -> assertEquals(23, app.items[0].quality)
+        );
+    }
+
+    @DisplayName("Backstage passes 아이템은 판매기간이 0일 경우 가치는 0으로 감소한다.")
+    @Test
+    void updateQualityWhenBackstagePassesItemPhase4() {
+        Item[] items = new Item[] {new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name),
+            () -> assertEquals(-1, app.items[0].sellIn),
+            () -> assertEquals(0, app.items[0].quality)
         );
     }
 }
