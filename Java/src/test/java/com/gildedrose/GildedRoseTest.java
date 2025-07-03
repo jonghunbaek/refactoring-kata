@@ -30,9 +30,9 @@ class GildedRoseTest {
         app.updateQuality();
 
         assertAll(
-            () -> assertEquals("Aged Brie", app.items[1].name),
-            () -> assertEquals(1, app.items[1].sellIn),
-            () -> assertEquals(1, app.items[1].quality)
+            () -> assertEquals("Aged Brie", app.items[0].name),
+            () -> assertEquals(1, app.items[0].sellIn),
+            () -> assertEquals(1, app.items[0].quality)
         );
     }
 
@@ -117,6 +117,20 @@ class GildedRoseTest {
             () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name),
             () -> assertEquals(-1, app.items[0].sellIn),
             () -> assertEquals(0, app.items[0].quality)
+        );
+    }
+
+    @DisplayName("Conjured 아이템은 하루가 지날때마다 판매기간이 1, 가치가 2씩 감소한다.")
+    @Test
+    void updateQualityWhenConjuredItem() {
+        Item[] items = new Item[] {new Item("Conjured Mana Cake", 10, 20)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("Conjured Mana Cake", app.items[0].name),
+            () -> assertEquals(9, app.items[0].sellIn),
+            () -> assertEquals(18, app.items[0].quality)
         );
     }
 }
