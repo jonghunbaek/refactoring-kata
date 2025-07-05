@@ -30,18 +30,18 @@ public class Item {
             return;
         }
 
-        if (!isAgedBrie()) {
-            if (!isBackstagePasses()) {
-                if (isDecreasable()) {
-                    if (!isSulfuras()) {
-                        decreaseQuality();
-                    }
+        if (isAgedBrie()) {
+            increaseQualityBy(1);
+        }
+
+        if (!isBackstagePasses()) {
+            if (isDecreasable()) {
+                if (!isSulfuras()) {
+                    decreaseQuality();
                 }
-            } else {
-                quality = MINIMUM;
             }
         } else {
-            increaseQualityBy(1);
+            quality = MINIMUM;
         }
     }
 
