@@ -38,10 +38,8 @@ public class Item {
             quality = MINIMUM;
         }
 
-        if (isDecreasable()) {
-            if (!isSulfuras()) {
-                decreaseQuality();
-            }
+        if (isDecreasable() && !isSulfuras()) {
+            decreaseQuality();
         }
     }
 
