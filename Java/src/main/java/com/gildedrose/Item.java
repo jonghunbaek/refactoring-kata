@@ -24,8 +24,8 @@ public class Item {
 
     public void updateQuantityBySellIn() {
         if (!isAgedBrie() && !isBackstagePasses()) {
-            if (isDecreasable()) {
-                if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+                if (isDecreasable()) {
                     quality = quality - 1;
                 }
             }
