@@ -23,7 +23,7 @@ public class Item {
     }
 
     public void updateQualityBySellIn() {
-        updateQualityByItemTypeAndSellIn();
+        updateQualityByItemType();
         decreaseSellInExceptSulfuras();
 
         if (hasRemainingSellIn() || isSulfuras()) {
@@ -55,7 +55,7 @@ public class Item {
         sellIn = sellIn - 1;
     }
 
-    private void updateQualityByItemTypeAndSellIn() {
+    private void updateQualityByItemType() {
         if (isNormalItem()) {
             decreaseQuality();
         } else {
