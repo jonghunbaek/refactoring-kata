@@ -3,6 +3,7 @@ package com.gildedrose;
 public class Item {
 
     public static final int MINIMUM = 0;
+    public static final int MAXIMUM = 50;
 
     public String name;
 
@@ -29,18 +30,18 @@ public class Item {
                 }
             }
         } else {
-            if (quality < 50) {
+            if (quality < MAXIMUM) {
                 quality = quality + 1;
 
                 if (isBackstagePasses()) {
                     if (sellIn < 11) {
-                        if (quality < 50) {
+                        if (quality < MAXIMUM) {
                             quality = quality + 1;
                         }
                     }
 
                     if (sellIn < 6) {
-                        if (quality < 50) {
+                        if (quality < MAXIMUM) {
                             quality = quality + 1;
                         }
                     }
@@ -64,7 +65,7 @@ public class Item {
                     quality = MINIMUM;
                 }
             } else {
-                if (quality < 50) {
+                if (quality < MAXIMUM) {
                     quality = quality + 1;
                 }
             }
