@@ -24,9 +24,7 @@ public class Item {
 
     public void updateQuantityBySellIn() {
         if (isNormalItem()) {
-            if (isDecreasable()) {
-                decreaseQuality();
-            }
+            decreaseQuality();
         } else {
             if (quality < MAXIMUM) {
                 quality = quality + 1;
@@ -75,7 +73,9 @@ public class Item {
     }
 
     private void decreaseQuality() {
-        quality = quality - 1;
+        if (isDecreasable()) {
+            quality = quality - 1;
+        }
     }
 
     private boolean isSulfuras() {
