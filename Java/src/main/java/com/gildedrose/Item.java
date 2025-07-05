@@ -27,18 +27,18 @@ public class Item {
             decreaseQuality();
         } else {
             if (isIncreasable()) {
-                increaseQualityByOne();
+                increaseQuality();
 
                 if (isBackstagePasses()) {
                     if (sellIn < 11) {
                         if (isIncreasable()) {
-                            increaseQualityByOne();
+                            increaseQuality();
                         }
                     }
 
                     if (sellIn < 6) {
                         if (isIncreasable()) {
-                            increaseQualityByOne();
+                            increaseQuality();
                         }
                     }
                 }
@@ -62,13 +62,13 @@ public class Item {
                 }
             } else {
                 if (isIncreasable()) {
-                    increaseQualityByOne();
+                    increaseQuality();
                 }
             }
         }
     }
 
-    private void increaseQualityByOne() {
+    private void increaseQuality() {
         quality = quality + 1;
     }
 
