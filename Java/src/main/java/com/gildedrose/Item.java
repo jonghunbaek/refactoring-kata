@@ -45,13 +45,13 @@ public class Item {
                     quality = MINIMUM;
                 }
             } else {
-                increaseQualityBy();
+                increaseQualityBy(1);
             }
         }
     }
 
     private void increaseQuality() {
-        increaseQualityBy();
+        increaseQualityBy(1);
 
         if (isBackstagePasses()) {
             increaseBackstagePassesQuality();
@@ -60,16 +60,16 @@ public class Item {
 
     private void increaseBackstagePassesQuality() {
         if (sellIn < 11) {
-            increaseQualityBy();
+            increaseQualityBy(1);
         }
 
         if (sellIn < 6) {
-            increaseQualityBy();
+            increaseQualityBy(1);
         }
     }
 
-    private void increaseQualityBy() {
-        if (isIncreasable(1)) {
+    private void increaseQualityBy(int qualityToAdd) {
+        if (isIncreasable(qualityToAdd)) {
             quality = quality + 1;
         }
     }
