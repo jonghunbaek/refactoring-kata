@@ -26,7 +26,7 @@ public class Item {
         updateQualityByItemTypeAndSellIn();
         decreaseSellInExceptSulfuras();
 
-        if (sellIn >= MINIMUM) {
+        if (hasRemainingSellIn()) {
             return;
         }
 
@@ -43,6 +43,10 @@ public class Item {
         } else {
             increaseQualityBy(1);
         }
+    }
+
+    private boolean hasRemainingSellIn() {
+        return sellIn >= MINIMUM;
     }
 
     private void decreaseSellInExceptSulfuras() {
