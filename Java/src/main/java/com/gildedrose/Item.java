@@ -26,18 +26,18 @@ public class Item {
         if (isNormalItem()) {
             decreaseQuality();
         } else {
-            if (quality < MAXIMUM) {
+            if (isIncreasable()) {
                 quality = quality + 1;
 
                 if (isBackstagePasses()) {
                     if (sellIn < 11) {
-                        if (quality < MAXIMUM) {
+                        if (isIncreasable()) {
                             quality = quality + 1;
                         }
                     }
 
                     if (sellIn < 6) {
-                        if (quality < MAXIMUM) {
+                        if (isIncreasable()) {
                             quality = quality + 1;
                         }
                     }
@@ -61,11 +61,15 @@ public class Item {
                     quality = MINIMUM;
                 }
             } else {
-                if (quality < MAXIMUM) {
+                if (isIncreasable()) {
                     quality = quality + 1;
                 }
             }
         }
+    }
+
+    private boolean isIncreasable() {
+        return quality < MAXIMUM;
     }
 
     private boolean isNormalItem() {
