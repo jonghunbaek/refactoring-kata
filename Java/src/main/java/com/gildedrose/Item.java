@@ -70,7 +70,7 @@ public class Item {
 
     private void increaseQualityBy(int qualityToAdd) {
         if (isIncreasable(qualityToAdd)) {
-            quality = quality + 1;
+            quality = quality + qualityToAdd;
         }
     }
 
