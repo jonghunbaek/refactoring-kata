@@ -25,20 +25,19 @@ public class Item {
     public void updateQualityBySellIn() {
         updateQualityByItemType();
         decreaseSellInExceptSulfuras();
+        updateQualityWhenNotRemainSellIn();
+    }
 
+    private void updateQualityWhenNotRemainSellIn() {
         if (hasRemainingSellIn() || isSulfuras()) {
             return;
         }
 
         if (isAgedBrie()) {
             increaseQualityBy(1);
-        }
-
-        if (isBackstagePasses()) {
+        } else if (isBackstagePasses()) {
             quality = MINIMUM;
-        }
-
-        if (isDecreasable()) {
+        } else if (isDecreasable()) {
             decreaseQuality();
         }
     }
