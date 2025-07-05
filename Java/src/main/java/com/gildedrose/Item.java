@@ -25,9 +25,7 @@ public class Item {
     public void updateQualityBySellIn() {
         updateQualityByItemTypeAndSellIn();
 
-        if (!isSulfuras()) {
-            sellIn = sellIn - 1;
-        }
+        decreaseSellInExceptSulfuras();
 
         if (sellIn < MINIMUM) {
             if (!isAgedBrie()) {
@@ -43,6 +41,12 @@ public class Item {
             } else {
                 increaseQualityBy(1);
             }
+        }
+    }
+
+    private void decreaseSellInExceptSulfuras() {
+        if (!isSulfuras()) {
+            sellIn = sellIn - 1;
         }
     }
 
