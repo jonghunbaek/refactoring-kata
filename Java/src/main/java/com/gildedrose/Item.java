@@ -26,21 +26,15 @@ public class Item {
         if (isNormalItem()) {
             decreaseQuality();
         } else {
-            if (isIncreasable()) {
-                increaseQuality();
+            increaseQuality();
 
-                if (isBackstagePasses()) {
-                    if (sellIn < 11) {
-                        if (isIncreasable()) {
-                            increaseQuality();
-                        }
-                    }
+            if (isBackstagePasses()) {
+                if (sellIn < 11) {
+                    increaseQuality();
+                }
 
-                    if (sellIn < 6) {
-                        if (isIncreasable()) {
-                            increaseQuality();
-                        }
-                    }
+                if (sellIn < 6) {
+                    increaseQuality();
                 }
             }
         }
@@ -61,15 +55,15 @@ public class Item {
                     quality = MINIMUM;
                 }
             } else {
-                if (isIncreasable()) {
-                    increaseQuality();
-                }
+                increaseQuality();
             }
         }
     }
 
     private void increaseQuality() {
-        quality = quality + 1;
+        if (isIncreasable()) {
+            quality = quality + 1;
+        }
     }
 
     private boolean isIncreasable() {
