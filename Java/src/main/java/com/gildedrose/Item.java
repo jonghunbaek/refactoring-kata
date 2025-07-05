@@ -34,14 +34,14 @@ public class Item {
             increaseQualityBy(1);
         }
 
-        if (!isBackstagePasses()) {
-            if (isDecreasable()) {
-                if (!isSulfuras()) {
-                    decreaseQuality();
-                }
-            }
-        } else {
+        if (isBackstagePasses()) {
             quality = MINIMUM;
+        }
+
+        if (isDecreasable()) {
+            if (!isSulfuras()) {
+                decreaseQuality();
+            }
         }
     }
 
