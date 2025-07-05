@@ -26,20 +26,22 @@ public class Item {
         updateQualityByItemTypeAndSellIn();
         decreaseSellInExceptSulfuras();
 
-        if (sellIn < MINIMUM) {
-            if (!isAgedBrie()) {
-                if (!isBackstagePasses()) {
-                    if (isDecreasable()) {
-                        if (!isSulfuras()) {
-                            decreaseQuality();
-                        }
+        if (sellIn >= MINIMUM) {
+            return;
+        }
+
+        if (!isAgedBrie()) {
+            if (!isBackstagePasses()) {
+                if (isDecreasable()) {
+                    if (!isSulfuras()) {
+                        decreaseQuality();
                     }
-                } else {
-                    quality = MINIMUM;
                 }
             } else {
-                increaseQualityBy(1);
+                quality = MINIMUM;
             }
+        } else {
+            increaseQualityBy(1);
         }
     }
 
