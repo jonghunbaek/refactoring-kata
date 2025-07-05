@@ -23,11 +23,9 @@ public class Item {
     }
 
     public void updateQuantityBySellIn() {
-        if (!isAgedBrie() && !isBackstagePasses()) {
-            if (!isSulfuras()) {
-                if (isDecreasable()) {
-                    decreaseQuality();
-                }
+        if (!isAgedBrie() && !isBackstagePasses() && !isSulfuras()) {
+            if (isDecreasable()) {
+                decreaseQuality();
             }
         } else {
             if (quality < MAXIMUM) {
