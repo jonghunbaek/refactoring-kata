@@ -69,13 +69,13 @@ public class Item {
     }
 
     private void increaseQualityBy() {
-        if (isIncreasable()) {
+        if (isIncreasable(1)) {
             quality = quality + 1;
         }
     }
 
-    private boolean isIncreasable() {
-        return quality < MAXIMUM;
+    private boolean isIncreasable(int qualityToAdd) {
+        return quality + qualityToAdd <= MAXIMUM;
     }
 
     private boolean isNormalItem() {
