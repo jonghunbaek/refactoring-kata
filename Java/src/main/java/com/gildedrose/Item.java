@@ -26,7 +26,7 @@ public class Item {
         if (!isAgedBrie() && !isBackstagePasses()) {
             if (!isSulfuras()) {
                 if (isDecreasable()) {
-                    quality = quality - 1;
+                    decreaseQuality();
                 }
             }
         } else {
@@ -58,7 +58,7 @@ public class Item {
                 if (!isBackstagePasses()) {
                     if (isDecreasable()) {
                         if (!isSulfuras()) {
-                            quality = quality - 1;
+                            decreaseQuality();
                         }
                     }
                 } else {
@@ -70,6 +70,10 @@ public class Item {
                 }
             }
         }
+    }
+
+    private void decreaseQuality() {
+        quality = quality - 1;
     }
 
     private boolean isSulfuras() {
