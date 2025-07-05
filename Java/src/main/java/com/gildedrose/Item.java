@@ -23,11 +23,7 @@ public class Item {
     }
 
     public void updateQualityBySellIn() {
-        if (isNormalItem()) {
-            decreaseQuality();
-        } else {
-            increaseQuality();
-        }
+        updateQualityByItemTypeAndSellIn();
 
         if (!isSulfuras()) {
             sellIn = sellIn - 1;
@@ -47,6 +43,14 @@ public class Item {
             } else {
                 increaseQualityBy(1);
             }
+        }
+    }
+
+    private void updateQualityByItemTypeAndSellIn() {
+        if (isNormalItem()) {
+            decreaseQuality();
+        } else {
+            increaseQuality();
         }
     }
 
