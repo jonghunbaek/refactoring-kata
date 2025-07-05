@@ -23,7 +23,7 @@ public class Item {
     }
 
     public void updateQuantityBySellIn() {
-        if (!isAgedBrie() && !isBackstagePasses() && !isSulfuras()) {
+        if (isNormalItem()) {
             if (isDecreasable()) {
                 decreaseQuality();
             }
@@ -68,6 +68,10 @@ public class Item {
                 }
             }
         }
+    }
+
+    private boolean isNormalItem() {
+        return !isAgedBrie() && !isBackstagePasses() && !isSulfuras();
     }
 
     private void decreaseQuality() {
