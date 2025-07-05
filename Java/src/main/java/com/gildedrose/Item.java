@@ -30,16 +30,16 @@ public class Item {
             return;
         }
 
+        if (isSulfuras()) {
+            return;
+        }
+
         if (isAgedBrie()) {
             increaseQualityBy(1);
         }
 
         if (isBackstagePasses()) {
             quality = MINIMUM;
-        }
-
-        if (isSulfuras()) {
-            return;
         }
 
         if (isDecreasable()) {
