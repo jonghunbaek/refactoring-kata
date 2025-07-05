@@ -54,6 +54,20 @@ public class Item {
         }
     }
 
+    private boolean isNormalItem() {
+        return !isAgedBrie() && !isBackstagePasses() && !isSulfuras();
+    }
+
+    private void decreaseQuality() {
+        if (isDecreasable()) {
+            quality = quality - 1;
+        }
+    }
+
+    private boolean isDecreasable() {
+        return quality > MINIMUM;
+    }
+
     private void increaseQuality() {
         if (isBackstagePasses()) {
             increaseBackstagePassesQuality();
@@ -83,22 +97,8 @@ public class Item {
         return quality + qualityToAdd <= MAXIMUM;
     }
 
-    private boolean isNormalItem() {
-        return !isAgedBrie() && !isBackstagePasses() && !isSulfuras();
-    }
-
-    private void decreaseQuality() {
-        if (isDecreasable()) {
-            quality = quality - 1;
-        }
-    }
-
     private boolean isSulfuras() {
         return name.equals("Sulfuras, Hand of Ragnaros");
-    }
-
-    private boolean isDecreasable() {
-        return quality > MINIMUM;
     }
 
     private boolean isBackstagePasses() {
