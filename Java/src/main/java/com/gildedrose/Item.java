@@ -28,6 +28,26 @@ public class Item {
         updateQualityWhenNotRemainSellIn();
     }
 
+    private void updateQualityByItemType() {
+        if (isNormalItem()) {
+            decreaseQuality();
+        } else {
+            increaseQuality();
+        }
+    }
+
+    private boolean isNormalItem() {
+        return !isAgedBrie() && !isBackstagePasses() && !isSulfuras();
+    }
+
+    private void decreaseSellInExceptSulfuras() {
+        if (isSulfuras()) {
+            return;
+        }
+
+        sellIn = sellIn - 1;
+    }
+
     private void updateQualityWhenNotRemainSellIn() {
         if (hasRemainingSellIn() || isSulfuras()) {
             return;
@@ -44,36 +64,6 @@ public class Item {
 
     private boolean hasRemainingSellIn() {
         return sellIn >= MINIMUM;
-    }
-
-    private void decreaseSellInExceptSulfuras() {
-        if (isSulfuras()) {
-            return;
-        }
-
-        sellIn = sellIn - 1;
-    }
-
-    private void updateQualityByItemType() {
-        if (isNormalItem()) {
-            decreaseQuality();
-        } else {
-            increaseQuality();
-        }
-    }
-
-    private boolean isNormalItem() {
-        return !isAgedBrie() && !isBackstagePasses() && !isSulfuras();
-    }
-
-    private void decreaseQuality() {
-        if (isDecreasable()) {
-            quality = quality - 1;
-        }
-    }
-
-    private boolean isDecreasable() {
-        return quality > MINIMUM;
     }
 
     private void increaseQuality() {
@@ -103,6 +93,16 @@ public class Item {
 
     private boolean isIncreasable(int qualityToAdd) {
         return quality + qualityToAdd <= MAXIMUM;
+    }
+
+    private void decreaseQuality() {
+        if (isDecreasable()) {
+            quality = quality - 1;
+        }
+    }
+
+    private boolean isDecreasable() {
+        return quality > MINIMUM;
     }
 
     private boolean isSulfuras() {
