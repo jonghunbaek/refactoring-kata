@@ -51,19 +51,20 @@ public class Item {
     }
 
     private void increaseQuality() {
-        increaseQualityBy(1);
-
         if (isBackstagePasses()) {
             increaseBackstagePassesQuality();
+            return;
         }
+
+        increaseQualityBy(1);
     }
 
     private void increaseBackstagePassesQuality() {
-        if (sellIn < 11) {
-            increaseQualityBy(1);
-        }
-
         if (sellIn < 6) {
+            increaseQualityBy(3);
+        } else if (sellIn < 11) {
+            increaseQualityBy(2);
+        } else {
             increaseQualityBy(1);
         }
     }
