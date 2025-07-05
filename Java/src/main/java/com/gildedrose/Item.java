@@ -26,11 +26,7 @@ public class Item {
         updateQualityByItemTypeAndSellIn();
         decreaseSellInExceptSulfuras();
 
-        if (hasRemainingSellIn()) {
-            return;
-        }
-
-        if (isSulfuras()) {
+        if (hasRemainingSellIn() || isSulfuras()) {
             return;
         }
 
