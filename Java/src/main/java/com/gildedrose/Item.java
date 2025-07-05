@@ -24,7 +24,7 @@ public class Item {
 
     public void updateQuantityBySellIn() {
         if (!isAgedBrie() && !isBackstagePasses()) {
-            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!isSulfuras()) {
                 if (isDecreasable()) {
                     quality = quality - 1;
                 }
@@ -49,7 +49,7 @@ public class Item {
             }
         }
 
-        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+        if (!isSulfuras()) {
             sellIn = sellIn - 1;
         }
 
@@ -57,7 +57,7 @@ public class Item {
             if (!isAgedBrie()) {
                 if (!isBackstagePasses()) {
                     if (isDecreasable()) {
-                        if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+                        if (!isSulfuras()) {
                             quality = quality - 1;
                         }
                     }
@@ -70,6 +70,10 @@ public class Item {
                 }
             }
         }
+    }
+
+    private boolean isSulfuras() {
+        return name.equals("Sulfuras, Hand of Ragnaros");
     }
 
     private boolean isDecreasable() {
