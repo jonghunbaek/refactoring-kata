@@ -27,16 +27,6 @@ public class Item {
             decreaseQuality();
         } else {
             increaseQuality();
-
-            if (isBackstagePasses()) {
-                if (sellIn < 11) {
-                    increaseQuality();
-                }
-
-                if (sellIn < 6) {
-                    increaseQuality();
-                }
-            }
         }
 
         if (!isSulfuras()) {
@@ -55,12 +45,26 @@ public class Item {
                     quality = MINIMUM;
                 }
             } else {
-                increaseQuality();
+                increaseQualityBy();
             }
         }
     }
 
     private void increaseQuality() {
+        increaseQualityBy();
+
+        if (isBackstagePasses()) {
+            if (sellIn < 11) {
+                increaseQualityBy();
+            }
+
+            if (sellIn < 6) {
+                increaseQualityBy();
+            }
+        }
+    }
+
+    private void increaseQualityBy() {
         if (isIncreasable()) {
             quality = quality + 1;
         }
