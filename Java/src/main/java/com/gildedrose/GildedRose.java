@@ -50,8 +50,6 @@ class GildedRose {
 
         if (isAgedBrie(item.name)) {
             increaseQualityBy(1, item);
-        } else if (isDecreasable(item.quality)) {
-            updateNormalItemQuality(item);
         }
     }
 
@@ -91,6 +89,10 @@ class GildedRose {
     }
 
     private void updateNormalItemQuality(Item item) {
+        if (item.sellIn <= MINIMUM) {
+            item.quality = item.quality - 1;
+        }
+
         if (isDecreasable(item.quality)) {
             item.quality = item.quality - 1;
         }
