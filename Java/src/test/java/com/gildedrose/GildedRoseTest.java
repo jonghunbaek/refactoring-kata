@@ -93,17 +93,23 @@ class GildedRoseTest {
         );
     }
 
-    @DisplayName("Aged Brie 아이템은 하루가 지날때마다 가치가 1씩 증가한다.")
+    @DisplayName("Aged Brie 아이템은 하루가 지날때마다 가치가 1씩 증가한다. 단, 판매일수가 없으면 두배로 증가한다.")
     @Test
     void updateQualityWhenAgedBrieItem() {
-        Item[] items = new Item[] {new Item("Aged Brie", 2, 0)};
+        Item[] items = new Item[] {
+            new Item("Aged Brie", 2, 0),
+            new Item("Aged Brie", -1, 0)};
         GildedRose app = new GildedRose(items);
         app.updateQuality();
 
         assertAll(
             () -> assertEquals("Aged Brie", app.items[0].name),
             () -> assertEquals(1, app.items[0].sellIn),
-            () -> assertEquals(1, app.items[0].quality)
+            () -> assertEquals(1, app.items[0].quality),
+
+            () -> assertEquals("Aged Brie", app.items[1].name),
+            () -> assertEquals(-2, app.items[1].sellIn),
+            () -> assertEquals(2, app.items[1].quality)
         );
     }
 
