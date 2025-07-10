@@ -25,9 +25,9 @@ class GildedRose {
 
     private void updateQualityByItemType(Item item) {
         if (isNormalItem(item.name)) {
-            decreaseQuality(item);
+            updateNormalItemQuality(item);
         } else {
-            increaseQuality(item);
+            updateSpecialItemQuality(item);
         }
     }
 
@@ -53,7 +53,7 @@ class GildedRose {
         } else if (isBackstagePasses(item.name)) {
             item.quality = MINIMUM;
         } else if (isDecreasable(item.quality)) {
-            decreaseQuality(item);
+            updateNormalItemQuality(item);
         }
     }
 
@@ -61,7 +61,7 @@ class GildedRose {
         return sellIn >= MINIMUM;
     }
 
-    private void increaseQuality(Item item) {
+    private void updateSpecialItemQuality(Item item) {
         if (isBackstagePasses(item.name)) {
             increaseBackstagePassesQuality(item);
             return;
@@ -90,7 +90,7 @@ class GildedRose {
         return quality + qualityToAdd <= MAXIMUM;
     }
 
-    private void decreaseQuality(Item item) {
+    private void updateNormalItemQuality(Item item) {
         if (isDecreasable(item.quality)) {
             item.quality = item.quality - 1;
         }
