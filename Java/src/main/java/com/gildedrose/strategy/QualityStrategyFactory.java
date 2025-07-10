@@ -10,6 +10,8 @@ public class QualityStrategyFactory {
                 return new SulfurasQualityStrategy();
             case "Aged Brie" :
                 return new AgedBrieQualityStrategy();
+            case "Conjured Mana Cake" :
+                return new ConjuredQualityStrategy();
             default:
                 return new DefaultQualityStrategy();
         }
