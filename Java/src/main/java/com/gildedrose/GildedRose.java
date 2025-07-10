@@ -20,7 +20,6 @@ class GildedRose {
     public void updateQualityBySellIn(Item item) {
         updateQualityByItemType(item);
         decreaseSellInExceptSulfuras(item);
-        updateQualityWhenNotRemainSellIn(item);
     }
 
     private void updateQualityByItemType(Item item) {
@@ -41,16 +40,6 @@ class GildedRose {
         }
 
         item.sellIn = item.sellIn - 1;
-    }
-
-    private void updateQualityWhenNotRemainSellIn(Item item) {
-        if (hasRemainingSellIn(item.sellIn) || isSulfuras(item.name)) {
-            return;
-        }
-    }
-
-    private boolean hasRemainingSellIn(int sellIn) {
-        return sellIn >= MINIMUM;
     }
 
     private void updateSpecialItemQuality(Item item) {
