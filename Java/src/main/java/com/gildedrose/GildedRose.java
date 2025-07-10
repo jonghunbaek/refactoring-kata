@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.strategy.QualityStrategyFactory;
+
 class GildedRose {
 
     public static final int MINIMUM = 0;
@@ -18,6 +20,8 @@ class GildedRose {
     }
 
     public void updateQualityBySellIn(Item item) {
+        QualityStrategyFactory.createByName(item.name)
+            .updateQualityByItemType(item);
         updateQualityByItemType(item);
         decreaseSellInExceptSulfuras(item);
     }
