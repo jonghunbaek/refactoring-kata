@@ -6,6 +6,6 @@ public class SulfurasQualityStrategy extends QualityStrategy {
 
     @Override
     public void updateQualityByItemType(Item item) {
-
+        return;
     }
 }
