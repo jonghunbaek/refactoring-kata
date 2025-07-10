@@ -11,6 +11,11 @@ public abstract class QualityStrategy {
 
     protected abstract void decreaseSellIn(Item item);
 
+    public void updateQualityByStrategy(Item item) {
+        updateQualityByItemType(item);
+        decreaseSellIn(item);
+    }
+
     protected void increaseQualityBy(int qualityToAdd, Item item) {
         if (isIncreasable(item.quality, qualityToAdd)) {
             item.quality = item.quality + qualityToAdd;

@@ -11,8 +11,6 @@ public class AgedBrieQualityStrategy extends QualityStrategy {
         } else {
             increaseQualityBy(1, item);
         }
-
-        decreaseSellIn(item);
     }
 
     private boolean isSellInOver(Item item) {
