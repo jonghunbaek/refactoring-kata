@@ -16,4 +16,9 @@ public class BackstagePassesQualityStrategy extends QualityStrategy {
             increaseQualityBy(1, item);
         }
     }
+
+    @Override
+    public void decreaseSellIn(Item item) {
+        item.sellIn--;
+    }
 }

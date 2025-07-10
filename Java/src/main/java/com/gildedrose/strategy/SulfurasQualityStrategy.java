@@ -8,4 +8,9 @@ public class SulfurasQualityStrategy extends QualityStrategy {
     public void updateQualityByItemType(Item item) {
         return;
     }
+
+    @Override
+    public void decreaseSellIn(Item item) {
+        return;
+    }
 }

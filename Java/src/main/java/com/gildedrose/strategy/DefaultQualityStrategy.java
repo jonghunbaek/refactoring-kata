@@ -12,4 +12,9 @@ public class DefaultQualityStrategy extends QualityStrategy {
             decreaseQualityBy(1, item);
         }
     }
+
+    @Override
+    public void decreaseSellIn(Item item) {
+        item.sellIn--;
+    }
 }
