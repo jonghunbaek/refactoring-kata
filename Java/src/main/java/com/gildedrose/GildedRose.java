@@ -81,6 +81,8 @@ class GildedRose {
     private void increaseQualityBy(int qualityToAdd, Item item) {
         if (isIncreasable(item.quality, qualityToAdd)) {
             item.quality = item.quality + qualityToAdd;
+        } else if (!isSulfuras(item.name)) {
+            item.quality = MAXIMUM;
         }
     }
 
@@ -91,22 +93,21 @@ class GildedRose {
     private void updateNormalItemQuality(Item item) {
         if (item.sellIn <= MINIMUM) {
             decreaseQualityBy(2, item);
-            return;
-        }
-
-        if (isDecreasable(item.quality, 1)) {
+        } else {
             decreaseQualityBy(1, item);
         }
-    }
-
-    private boolean isDecreasable(int quality, int qualityToSubtract) {
-        return quality - qualityToSubtract >= MINIMUM;
     }
 
     private void decreaseQualityBy(int qualityToSubtract, Item item) {
         if (isDecreasable(item.quality, qualityToSubtract)) {
             item.quality = item.quality - qualityToSubtract;
+        } else {
+            item.quality = MINIMUM;
         }
+    }
+
+    private boolean isDecreasable(int quality, int qualityToSubtract) {
+        return quality - qualityToSubtract >= MINIMUM;
     }
 
     private boolean isSulfuras(String name) {

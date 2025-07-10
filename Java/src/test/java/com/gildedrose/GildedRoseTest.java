@@ -8,6 +8,41 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
 
+    @DisplayName("Sulfuras를 제외한 모든 아이템의 quality 값은 0 ~ 50사이만 가능하다.")
+    @Test
+    void allItemsBetweenMinimumAndMaximum() {
+        Item[] items = new Item[] {
+            new Item("+5 Dexterity Vest", 0, 1),
+            new Item("Aged Brie", 2, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 15, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertAll(
+            () -> assertEquals("+5 Dexterity Vest", app.items[0].name),
+            () -> assertEquals(-1, app.items[0].sellIn),
+            () -> assertEquals(0, app.items[0].quality),
+
+            () -> assertEquals("Aged Brie", app.items[1].name),
+            () -> assertEquals(1, app.items[1].sellIn),
+            () -> assertEquals(50, app.items[1].quality),
+
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[2].name),
+            () -> assertEquals(14, app.items[2].sellIn),
+            () -> assertEquals(50, app.items[2].quality),
+
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[3].name),
+            () -> assertEquals(9, app.items[3].sellIn),
+            () -> assertEquals(50, app.items[3].quality),
+
+            () -> assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[4].name),
+            () -> assertEquals(4, app.items[4].sellIn),
+            () -> assertEquals(50, app.items[4].quality)
+        );
+    }
+
     @DisplayName("일반 아이템은 하루가 지날때마다 판매기간, 가치가 1씩 감소한다.")
     @Test
     void updateQualityWhenNormalItem() {
