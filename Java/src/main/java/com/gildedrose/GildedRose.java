@@ -50,12 +50,9 @@ class GildedRose {
             return;
         }
 
-        if (isAgedBrie(item.name)) {
-            updateAgedBrieQuality(item);
-            return;
+        if (!isAgedBrie(item.name)) {
+            increaseQualityBy(1, item);
         }
-
-        increaseQualityBy(1, item);
     }
 
     private void updateBackstagePassesQuality(Item item) {
@@ -64,14 +61,6 @@ class GildedRose {
         } else if (item.sellIn < 6) {
             increaseQualityBy(3, item);
         } else if (item.sellIn < 11) {
-            increaseQualityBy(2, item);
-        } else {
-            increaseQualityBy(1, item);
-        }
-    }
-
-    private void updateAgedBrieQuality(Item item) {
-        if (item.sellIn <= MINIMUM) {
             increaseQualityBy(2, item);
         } else {
             increaseQualityBy(1, item);
