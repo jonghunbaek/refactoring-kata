@@ -6,13 +6,17 @@ public class AgedBrieQualityStrategy extends QualityStrategy {
 
     @Override
     public void updateQualityByItemType(Item item) {
-        if (item.sellIn <= MINIMUM) {
+        if (isSellInOver(item)) {
             increaseQualityBy(2, item);
         } else {
             increaseQualityBy(1, item);
         }
 
         decreaseSellIn(item);
+    }
+
+    private boolean isSellInOver(Item item) {
+        return item.sellIn <= MINIMUM;
     }
 
     @Override
