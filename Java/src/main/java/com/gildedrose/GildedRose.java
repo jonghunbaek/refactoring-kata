@@ -4,7 +4,6 @@ import com.gildedrose.strategy.QualityStrategyFactory;
 
 class GildedRose {
 
-    public static final int MINIMUM = 0;
     public static final int MAXIMUM = 50;
 
     Item[] items;
@@ -45,24 +44,7 @@ class GildedRose {
     }
 
     private void updateSpecialItemQuality(Item item) {
-        if (isBackstagePasses(item.name)) {
-            updateBackstagePassesQuality(item);
-            return;
-        }
-
-        if (!isAgedBrie(item.name)) {
-            increaseQualityBy(1, item);
-        }
-    }
-
-    private void updateBackstagePassesQuality(Item item) {
-        if (item.sellIn <= MINIMUM) {
-            item.quality = MINIMUM;
-        } else if (item.sellIn < 6) {
-            increaseQualityBy(3, item);
-        } else if (item.sellIn < 11) {
-            increaseQualityBy(2, item);
-        } else {
+        if (!isAgedBrie(item.name) && !isBackstagePasses(item.name)) {
             increaseQualityBy(1, item);
         }
     }
