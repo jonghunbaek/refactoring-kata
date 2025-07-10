@@ -15,6 +15,8 @@ public class BackstagePassesQualityStrategy extends QualityStrategy {
         } else {
             increaseQualityBy(1, item);
         }
+
+        decreaseSellIn(item);
     }
 
     @Override

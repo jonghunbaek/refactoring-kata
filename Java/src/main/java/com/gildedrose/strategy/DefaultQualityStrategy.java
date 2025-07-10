@@ -11,6 +11,8 @@ public class DefaultQualityStrategy extends QualityStrategy {
         } else {
             decreaseQualityBy(1, item);
         }
+
+        decreaseSellIn(item);
     }
 
     @Override

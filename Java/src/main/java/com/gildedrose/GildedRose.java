@@ -15,7 +15,6 @@ class GildedRose {
         for (Item item : items) {
             QualityStrategy strategy = QualityStrategyFactory.createByName(item.name);
             strategy.updateQualityByItemType(item);
-            strategy.decreaseSellIn(item);
         }
     }
 
