@@ -90,16 +90,23 @@ class GildedRose {
 
     private void updateNormalItemQuality(Item item) {
         if (item.sellIn <= MINIMUM) {
-            item.quality = item.quality - 1;
+            decreaseQualityBy(2, item);
+            return;
         }
 
-        if (isDecreasable(item.quality)) {
-            item.quality = item.quality - 1;
+        if (isDecreasable(item.quality, 1)) {
+            decreaseQualityBy(1, item);
         }
     }
 
-    private boolean isDecreasable(int quality) {
-        return quality > MINIMUM;
+    private boolean isDecreasable(int quality, int qualityToSubtract) {
+        return quality - qualityToSubtract >= MINIMUM;
+    }
+
+    private void decreaseQualityBy(int qualityToSubtract, Item item) {
+        if (isDecreasable(item.quality, qualityToSubtract)) {
+            item.quality = item.quality - qualityToSubtract;
+        }
     }
 
     private boolean isSulfuras(String name) {
