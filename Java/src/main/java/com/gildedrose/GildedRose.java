@@ -13,13 +13,10 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            updateQualityBySellIn(item);
+            QualityStrategy strategy = QualityStrategyFactory.createByName(item.name);
+            strategy.updateQualityByItemType(item);
+            strategy.decreaseSellIn(item);
         }
     }
 
-    public void updateQualityBySellIn(Item item) {
-        QualityStrategy strategy = QualityStrategyFactory.createByName(item.name);
-        strategy.updateQualityByItemType(item);
-        strategy.decreaseSellIn(item);
-    }
 }
