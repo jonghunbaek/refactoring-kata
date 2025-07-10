@@ -5,7 +5,7 @@ import com.gildedrose.Item;
 public class BackstagePassesQualityStrategy extends QualityStrategy {
 
     @Override
-    public void updateQualityByItemType(Item item) {
+    protected void updateQualityByItemType(Item item) {
         if (item.sellIn <= MINIMUM) {
             item.quality = MINIMUM;
         } else if (item.sellIn < 6) {

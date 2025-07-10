@@ -7,7 +7,7 @@ public abstract class QualityStrategy {
     public static final int MINIMUM = 0;
     public static final int MAXIMUM = 50;
 
-    public abstract void updateQualityByItemType(Item item);
+    protected abstract void updateQualityByItemType(Item item);
 
     protected abstract void decreaseSellIn(Item item);
 

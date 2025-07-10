@@ -5,7 +5,7 @@ import com.gildedrose.Item;
 public class AgedBrieQualityStrategy extends QualityStrategy {
 
     @Override
-    public void updateQualityByItemType(Item item) {
+    protected void updateQualityByItemType(Item item) {
         if (isSellInOver(item)) {
             increaseQualityBy(2, item);
         } else {
