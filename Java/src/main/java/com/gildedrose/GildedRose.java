@@ -61,14 +61,14 @@ class GildedRose {
 
     private void updateSpecialItemQuality(Item item) {
         if (isBackstagePasses(item.name)) {
-            increaseBackstagePassesQuality(item);
+            updateBackstagePassesQuality(item);
             return;
         }
 
         increaseQualityBy(1, item);
     }
 
-    private void increaseBackstagePassesQuality(Item item) {
+    private void updateBackstagePassesQuality(Item item) {
         if (item.sellIn <= MINIMUM) {
             item.quality = MINIMUM;
         } else if (item.sellIn < 6) {
