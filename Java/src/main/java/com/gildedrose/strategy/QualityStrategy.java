@@ -39,4 +39,8 @@ public abstract class QualityStrategy {
     protected boolean isDecreasable(int quality, int qualityToSubtract) {
         return quality - qualityToSubtract >= MINIMUM;
     }
+
+    protected boolean isSellInOver(Item item) {
+        return item.sellIn <= MINIMUM;
+    }
 }

@@ -13,10 +13,6 @@ public class AgedBrieQualityStrategy extends QualityStrategy {
         }
     }
 
-    private boolean isSellInOver(Item item) {
-        return item.sellIn <= MINIMUM;
-    }
-
     @Override
     public void decreaseSellIn(Item item) {
         item.sellIn--;

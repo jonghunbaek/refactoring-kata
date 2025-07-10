@@ -17,10 +17,6 @@ public class BackstagePassesQualityStrategy extends QualityStrategy {
         }
     }
 
-    private boolean isSellInOver(Item item) {
-        return item.sellIn <= MINIMUM;
-    }
-
     private boolean isSellInLessThanSixDays(Item item) {
         return item.sellIn < 6;
     }
