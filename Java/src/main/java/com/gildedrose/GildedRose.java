@@ -24,7 +24,7 @@ class GildedRose {
     }
 
     private void updateQualityByItemType(Item item) {
-        if (isNormalItem(item.name)) {
+        if (isNormalItem(item.name) || isConjured(item.name)) {
             decreaseQuality(item);
         } else {
             increaseQuality(item);
@@ -91,9 +91,20 @@ class GildedRose {
     }
 
     private void decreaseQuality(Item item) {
-        if (isDecreasable(item.quality)) {
-            item.quality = item.quality - 1;
+        if (!isDecreasable(item.quality)) {
+            return;
         }
+
+        if (isConjured(item.name)) {
+            decreaseQualityBy(2, item);
+            return;
+        }
+
+        decreaseQualityBy(1, item);
+    }
+
+    private void decreaseQualityBy(int qualityToSubtract, Item item) {
+        item.quality = item.quality - qualityToSubtract;
     }
 
     private boolean isDecreasable(int quality) {
@@ -110,5 +121,9 @@ class GildedRose {
 
     private boolean isAgedBrie(String name) {
         return name.equals("Aged Brie");
+    }
+
+    private boolean isConjured(String name) {
+        return name.equals("Conjured Mana Cake");
     }
 }
